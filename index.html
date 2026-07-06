@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ka">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Hub</title>
+    <meta
+      name="description"
+      content="იპოვე რეცეპტი, შეინახე საყვარელები და მოამზადე საყიდლების სია — ყველაფერი ერთ გვერდზე."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="./recipe-keeper.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="#home" class="logo"
+          >🍲 Recipe <span class="font-hand">Hub</span></a
+        >
+
+        <nav class="main-nav">
+          <button class="burger" aria-label="მენიუს გახსნა">
+            <span></span><span></span><span></span>
+          </button>
+          <ul>
+            <li>
+              <a href="#home" class="nav-link active" data-section="home"
+                >მთავარი</a
+              >
+            </li>
+            <li class="has-dropdown">
+              <a href="#recipes" class="nav-link" data-section="recipes"
+                >რეცეპტები ▾</a
+              >
+              <ul class="dropdown-menu" id="nav-categories">
+                <li><a href="#recipes" data-category="">ყველა რეცეპტი</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#mylist" class="nav-link" data-section="mylist"
+                >ჩემი სია</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="container">
+          <div class="hero-text">
+            <span class="hero-eyebrow">დღეს რას მოვამზადოთ?</span>
+            <h1>შენი პირადი <em>სამზარეულოს</em> ჟურნალი</h1>
+            <p>
+              ასობით რეცეპტი, ორგანიზებული კატეგორიების მიხედვით. შეინახე რაც
+              მოგეწონა და ავტომატურად ააწყე საყიდლების სია — ყველაფერი ინახება
+              შენს ბრაუზერში.
+            </p>
+            <div class="hero-actions">
+              <a href="#recipes" class="btn btn-primary"
+                >რეცეპტების დათვალიერება</a
+              >
+              <a href="#mylist" class="btn btn-outline">ჩემი სია</a>
+            </div>
+          </div>
+          <figure class="hero-card">
+            <img
+              id="hero-image"
+              src="https://www.themealdb.com/images/media/meals/1529444830.jpg"
+              alt="დღის რჩეული კერძი"
+            />
+            <figcaption>დღის რჩეული 🍽️</figcaption>
+          </figure>
+        </div>
+      </section>
+      <section id="categories" class="reveal">
+        <div class="container">
+          <div class="section-head">
+            <span class="hero-eyebrow">კატეგორიები</span>
+            <h2>მოძებნე გემოვნებით</h2>
+            <p>დააჭირე კატეგორიას და გადავალთ შესაბამის რეცეპტებზე</p>
+          </div>
+          <div class="grid" id="categories-grid">
+            <div class="loader">იტვირთება კატეგორიები...</div>
+          </div>
+        </div>
+      </section>
+      <section id="recipes" class="reveal">
+        <div class="container">
+          <div class="section-head">
+            <span class="hero-eyebrow">ბიბლიოთეკა</span>
+            <h2>ყველა რეცეპტი</h2>
+            <p>მონიშნე ერთი ან რამდენიმე კატეგორია, ან მოძებნე სახელით</p>
+          </div>
+
+          <div class="search-row">
+            <input
+              type="search"
+              id="search-input"
+              placeholder="მოძებნე რეცეპტი სახელით, მაგ: chicken, cake..."
+            />
+            <button class="btn btn-outline" id="clear-filters">
+              გასუფთავება
+            </button>
+          </div>
+
+          <div class="filter-bar" id="filter-bar">
+            <div class="loader" style="padding: 0">
+              იტვირთება კატეგორიები...
+            </div>
+          </div>
+
+          <div class="grid" id="recipes-grid">
+            <div class="loader">იტვირთება რეცეპტები...</div>
+          </div>
+        </div>
+      </section>
+      <section id="mylist" class="reveal">
+        <div class="container">
+          <div class="section-head" style="text-align: left; max-width: none">
+            <span class="hero-eyebrow">პირადი სივრცე</span>
+            <h2>ჩემი სია</h2>
+          </div>
+
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="saved">
+              ❤️ შენახული რეცეპტები
+            </button>
+            <button class="tab-btn" data-tab="shopping">
+              🛒 საყიდლების სია
+            </button>
+          </div>
+
+          <div class="tab-panel active" id="panel-saved">
+            <div class="grid" id="saved-grid"></div>
+          </div>
+
+          <div class="tab-panel" id="panel-shopping">
+            <form class="shopping-form" id="shopping-form">
+              <input
+                type="text"
+                id="shopping-input"
+                placeholder="დაამატე პროდუქტი, მაგ: 2 ხახვი..."
+                required
+              />
+              <button type="submit" class="btn btn-primary">დამატება</button>
+            </form>
+            <div class="shopping-list" id="shopping-list"></div>
+            <div class="list-footer">
+              <span id="shopping-count">0 პროდუქტი</span>
+              <button
+                class="btn btn-outline"
+                id="clear-done-btn"
+                style="padding: 8px 16px; font-size: 0.85rem"
+              >
+                დასრულებულების გასუფთავება
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-brand">
+          <h4>Recipe Hub</h4>
+          <p>
+            შენი პირადი სამზარეულოს ჟურნალი — იპოვე, შეინახე და მოამზადე.
+            პროექტი შექმნილია სასწავლო მიზნებისთვის.
+          </p>
+        </div>
+
+        <div>
+          <h4>ნავიგაცია</h4>
+          <ul>
+            <li><a href="#home">მთავარი</a></li>
+            <li><a href="#recipes">რეცეპტები</a></li>
+            <li><a href="#mylist">ჩემი სია</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4>გამოიწერე სიახლეები</h4>
+          <p style="opacity: 0.8; font-size: 0.9rem; margin-bottom: 14px">
+            ახალი რეცეპტები პირდაპირ შენს ინბოქსში — კვირაში ერთხელ.
+          </p>
+          <form class="newsletter-form" id="newsletter-form">
+            <input
+              type="email"
+              id="newsletter-email"
+              placeholder="შენი ელფოსტა"
+              required
+            />
+            <button type="submit">გამოწერა</button>
+          </form>
+          <p class="newsletter-note">
+            არანაირი სპამი. ნებისმიერ დროს გამოწერის გაუქმება შეგიძლია.
+          </p>
+        </div>
+
+        <div>
+          <h4>წყარო</h4>
+          <ul>
+            <li>
+              <a
+                href="https://www.themealdb.com/api.php"
+                target="_blank"
+                rel="noopener"
+                >TheMealDB API</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Recipe Hub · სასწავლო პროექტი</div>
+    </footer>
+
+    <button class="scroll-top" aria-label="ზემოთ ავიდეთ">↑</button>
+
+    <div class="cookie-notice">
+      <p>
+        🍪 ვიყენებთ cookies-ს საიტის უკეთესი მუშაობისთვის. აგრძელებ ნავიგაციას —
+        ეთანხმები.
+      </p>
+      <button class="btn btn-primary cookie-accept">კარგი, გასაგებია</button>
+    </div>
+    <div class="modal-overlay" id="recipe-modal">
+      <div class="modal-content" id="modal-content">
+        <button class="modal-close" id="modal-close" aria-label="დახურვა">
+          ✕
+        </button>
+        <div class="loader">იტვირთება რეცეპტი...</div>
+      </div>
+    </div>
+
+    <script src="./storage.js"></script>
+    <script src="./main.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
